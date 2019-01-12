@@ -26,9 +26,14 @@ class PostItem extends React.Component {
 }
 
 class Home extends React.Component {
+    constructor(props) {
+      super(props);
+    }
+
     render() {
-      const items = this.props.data;
-      const listItems = items.map((item, index) =>
+      const store = this.props.store;
+      const posts = store.getState().posts;
+      const postItems = posts.map((item, index) =>
           <PostItem
             key={index}
             post={item}
@@ -39,7 +44,7 @@ class Home extends React.Component {
           <h2>The Message Board</h2>
           
           <div className="row">
-            {listItems.length > 0 ? listItems : "There are currently no posts."}
+            {postItems.length > 0 ? postItems : "There are currently no posts."}
           </div>
 
           <button>
