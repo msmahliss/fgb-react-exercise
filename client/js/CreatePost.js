@@ -41,32 +41,36 @@ class CreatePostForm extends React.Component {
 	
 	render() {
 		return (
-			<form onSubmit={this.handleFormSubmit}>
-		        <div className="form-group">
-		            <label>Title
-			            <input
+			<form onSubmit={this.handleFormSubmit} className="text-center">
+		        <div className="form-group" >
+		            <label className="text-bold">Title
+			            <input className="form-control"
 			                type="text"
 			                name="title"
-			                onChange ={this.handleFormElementChange}
+			                onChange={this.handleFormElementChange}
+			                required
 			            />
 		             </label>
 		        </div>
 
-		        <div>
-		        	<label>Message
+		        <div className="form-group">
+					<label className="text-bold">Message
 						<textarea
+							className="form-control"
 							name="body"
-							onChange ={this.handleFormElementChange}
+							onChange={this.handleFormElementChange}
+							required
 						></textarea>
 					</label>
 		        </div>
 
-		        <div>
-		        	<label>User
+		        <div className="form-group">
+					<label className="text-bold">User
 						<input
+							className="form-control"
 							type="text"
 							name="username"
-							onChange ={this.handleFormElementChange}
+							onChange={this.handleFormElementChange}
 						/>
 					</label>
 		        </div>
@@ -86,7 +90,7 @@ class CreatePost extends React.Component {
 		const store = this.props.store;
 
 		return (
-			<div className="post-border">
+			<div className="post-border text-center">
 				<h2>Create a new post</h2>
 
 				<CreatePostForm

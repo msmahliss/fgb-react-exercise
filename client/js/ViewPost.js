@@ -7,7 +7,7 @@ class PostReplyDetail extends React.Component {
 
 		return(
 			<div>
-				<p><strong>{reply.username}</strong></p>
+				<p className="text-bold">{reply.username}:</p>
 				<p>{reply.body}</p>
 			</div>
 		);
@@ -18,18 +18,21 @@ class PostReplyForm extends React.Component {
 	render() {
 		return(
 			<form>
-		        <div>
+		        <div className="form-group">
 		        	<label>Reply Message:</label>
 
 					<textarea
+						className="form-control"
 						name="postBody"
+						required
 					></textarea>
 		        </div>
 
-		        <div>
+		        <div className="form-group">
 		        	<label>Reply User:</label>
 
 					<input
+						className="form-control"
 						type="text"
 						name="username"
 						placeholder="Serenely"
@@ -65,22 +68,24 @@ class PostDetail extends React.Component {
 						<p className="col-md-6">On: {post.createdTimestamp}</p>
 					</div>
 
-					<button>
-						<Link to="/">Back to Posts</Link>
-					</button>
-
 					<p>{post.body}</p>
 				</div>
 
 				<div className="col-md-12">
-					<p><strong>Responses</strong></p>
+					<p className="text-bold">Responses</p>
 
-					{replies.length > 0 ? replies : "No one has replied to this post. Be the first!"}
+					<div className="indent-left">
+						{replies.length > 0 ? replies : "No one has replied to this post. Be the first!"}
+					</div>
 				</div>
 
 				<div className="col-md-12">
 					<PostReplyForm></PostReplyForm>
 				</div>
+
+				<button>
+					<Link to="/">Back to Posts</Link>
+				</button>
 			</div>
 		);
 	}

@@ -41,7 +41,7 @@ class Home extends React.Component {
       );
       return (
         <div>
-          <h2>The Message Board</h2>
+          <h2 className="text-center">The Message Board</h2>
           
           <div className="row">
             {postItems.length > 0 ? postItems : "There are currently no posts."}
