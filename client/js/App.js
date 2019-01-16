@@ -20,6 +20,9 @@ function postReducer(state, action) {
       return {
         posts: [...state.posts, action.post]
       }
+    case "EDIT_POST":
+      return {
+        posts: state.posts.map(post => (post.id == action.id) ?  action.post : post )};
     default:
       return state;
   }
@@ -46,8 +49,8 @@ ReactDOM.render(
       </ul>
 
       <Route path="/" exact render={() => <Home store={store}></Home>}/>
-      <Route path="/create" render={() => <CreatePost store={store}></CreatePost>}/>
-      <Route path="/post/:id" render={({match}) => <ViewPost data={samplePosts} store={store} match={match}></ViewPost>}/>
+      <Route path="/create" render={({history}) => <CreatePost store={store} history={history}></CreatePost>}/>
+      <Route path="/post/:id" render={({match, history}) => <ViewPost data={samplePosts} store={store} match={match} history={history}></ViewPost>}/>
     </div>
   </BrowserRouter>
   ,

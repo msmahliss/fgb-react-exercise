@@ -28,15 +28,13 @@ class CreatePostForm extends React.Component {
 	    	type: "ADD_POST",
 	    	post: this.newPost
 	  	});
+
+	  	this.props.history.push("/");
 	}
 
 	handleFormElementChange(e) {
 		const el = e.target;
-		if (el.value == "") {
-			console.log(`enter a value for ${el.name}`);
-		}
 		this.newPost[el.name] = el.value;
-		console.log(this.newPost[el.name]);
 	}
 	
 	render() {
@@ -88,13 +86,14 @@ class CreatePostForm extends React.Component {
 class CreatePost extends React.Component {
 	render() {
 		const store = this.props.store;
+		let history = this.props.history;
 
 		return (
 			<div className="post-border text-center">
 				<h2>Create a new post</h2>
 
 				<CreatePostForm
-					store={store}
+					store={store} history={history}
 				></CreatePostForm>
 			</div>
 		);

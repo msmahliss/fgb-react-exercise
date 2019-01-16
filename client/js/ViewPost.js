@@ -15,15 +15,50 @@ class PostReplyDetail extends React.Component {
 }
 
 class PostReplyForm extends React.Component {
+	constructor(props) {
+		super(props);
+
+		const store = this.props.store;
+		this.post = this.props.post;
+
+		this.newPostReply = {
+			body: "",
+			username: "AnonUser",
+		};
+
+		this.handleFormSubmit = this.handleFormSubmit.bind(this);
+		this.handleFormElementChange = this.handleFormElementChange.bind(this);
+	}
+
+	handleFormSubmit(e) {
+		e.preventDefault();
+
+		this.post.replies = [...this.post.replies, this.newPostReply];
+
+	  	this.props.store.dispatch({
+	    	type: "EDIT_POST",
+	    	id: this.post.id,
+	    	post: this.post
+	  	});
+
+	  	this.props.history.push("/");
+	}
+
+	handleFormElementChange(e) {
+		const el = e.target;
+		this.newPostReply[el.name] = el.value;
+	}
+
 	render() {
 		return(
-			<form>
+			<form onSubmit={this.handleFormSubmit}>
 		        <div className="form-group">
 		        	<label>Reply Message:</label>
 
 					<textarea
 						className="form-control"
-						name="postBody"
+						name="body"
+						onChange={this.handleFormElementChange}
 						required
 					></textarea>
 		        </div>
@@ -36,6 +71,7 @@ class PostReplyForm extends React.Component {
 						type="text"
 						name="username"
 						placeholder="Serenely"
+						onChange={this.handleFormElementChange}
 					></input>
 		        </div>
 
@@ -49,7 +85,9 @@ class PostReplyForm extends React.Component {
 
 class PostDetail extends React.Component {
 	render() {
-		const post = this.props.post;
+		const store = this.props.store;
+		let post = this.props.post;
+		let history = this.props.history;
 
 		const replies = post.replies.map((reply, index) =>
 			<PostReplyDetail
@@ -80,7 +118,7 @@ class PostDetail extends React.Component {
 				</div>
 
 				<div className="col-md-12">
-					<PostReplyForm></PostReplyForm>
+					<PostReplyForm post={post} store={store} history={history}></PostReplyForm>
 				</div>
 
 				<button>
@@ -94,6 +132,7 @@ class PostDetail extends React.Component {
 class ViewPost extends React.Component {
 	render() {
 		const store = this.props.store;
+		let history = this.props.history;
 
 		const id = parseInt(this.props.match.params.id);
 		const posts = store.getState().posts;
@@ -102,7 +141,7 @@ class ViewPost extends React.Component {
 		post = post[0];
 
 		return (
-			<PostDetail post={post}></PostDetail>
+			<PostDetail post={post} store={store} history={history}></PostDetail>
 		);
 	}
 }
