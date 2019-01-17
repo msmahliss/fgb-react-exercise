@@ -1,4 +1,4 @@
-const posts = [
+const samplePosts = [
   {
     id: 1,
   	title: "Recent Work",
@@ -10,7 +10,7 @@ const posts = [
   {
     id: 2,
   	title: "Travel?",
-  	body:"Has anyone ever been to......",
+  	body:"Words Words Words Words Words Words Words Words Words Words Words Words Words Words Words ",
   	username:"Jada",
     replies: [
       {
@@ -23,11 +23,21 @@ const posts = [
   {
     id: 3,
   	title: "Personal Question",
-    body:"Personal question.",
+    body:"This is a personal question.",
     username:"Dinah C",
-    replies: [],
+    replies: [
+      {
+        body: "Personal Answer 1",
+        username: "Lane123"
+      },
+      {
+        body: "Personal Answer 2",
+        username: "Vitra"
+      }
+
+    ],
     createdTimestamp: "11/19/18 11:23pm"
   }
 ];
 
-export {posts};
+export {samplePosts};
