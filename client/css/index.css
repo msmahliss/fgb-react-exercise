@@ -1,59 +1,59 @@
 .align-right {
-	float: right;
+    float: right;
 }
 
 .full-width {
-	width: 100%;
+    width: 100%;
 }
 
 .indent-left {
-	margin-left: 25px;
+    margin-left: 25px;
 }
 
 .line-dotted {
-	border-top:3px dotted;
-	color: #808080;
+    border-top:3px dotted;
+    color: #808080;
 }
 
 .line-solid {
-	background-color: #808080;
-	height: 1px;
+    background-color: #808080;
+    height: 1px;
 }
 
 .link-unstyled {
-	color: black;
-	text-decoration: none;
+    color: black;
+    text-decoration: none;
 }
 
 .link-unstyled:hover {
-	color: black;
-	text-decoration: none;
+    color: black;
+    text-decoration: none;
 }
 
 .no-margin-bottom {
-	margin-bottom: 0px;
+    margin-bottom: 0px;
 }
 
 .post-border {
-	border-style: solid;
-	padding: 5px;
-	margin: 10px;
-	max-width: 95%;
+    border-style: solid;
+    padding: 5px;
+    margin: 10px;
+    max-width: 95%;
 }
 
 .post-btn {
-	padding: 8px;
-	margin: 0px 12px;
-	width: 150px;
-	min-width: 150px;
+    padding: 8px;
+    margin: 0px 12px;
+    width: 150px;
+    min-width: 150px;
 }
 
 .post-item-username, .post-item-comments, .post-item-date {
-	margin-right: 10px;
+    margin-right: 10px;
 }
 
 .text-bold {
-	font-weight: 800;
+    font-weight: 800;
 }
 
 .text-center {
@@ -68,7 +68,7 @@
 }
 
 .triangle-right {
-	width: 0px;
+    width: 0px;
     height: 0px;
     margin: 6px 0px;
     border-top: 20px solid transparent;
@@ -77,21 +77,21 @@
 }
 
 @media screen and (max-width: 800px) {
-	.triangle-right, .post-item-date {
-		display: none;
-	}
+    .triangle-right, .post-item-date {
+        display: none;
+    }
 
-	.post-item-comments {
-		float: right;
-	}
+    .post-item-comments {
+        float: right;
+    }
 
-	.form-group-create-post {
-		text-align: center;
-	}
+    .form-group-create-post {
+        text-align: center;
+    }
 }
 
 @media screen and (min-width: 800px) {
-	.post-create-btn {
-		float: right;
-	}
+    .post-create-btn {
+        float: right;
+    }
 }

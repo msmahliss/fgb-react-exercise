@@ -5,35 +5,35 @@ import "../../css/index.css";
 
 class Home extends React.Component {
     constructor(props) {
-      super(props);
+        super(props);
     }
 
     render() {
-      const store = this.props.store;
-      const posts = store.getState().posts;
-      const postItems = posts.map((item, index) =>
-          <PostItem
+        const store = this.props.store;
+        const posts = store.getState().posts;
+        const postItems = posts.map((item, index) =>
+            <PostItem
             key={item.id}
             post={item}
-          />
-      );
-      return (
+            />
+        );
+        return (
         <div>
-          <h2 className="text-center">The Message Board</h2>
-          
-          <div className="row">
+            <h2 className="text-center">The Message Board</h2>
+            
+            <div className="row">
             {postItems.length > 0 ? postItems : "There are currently no posts."}
-          </div>
+            </div>
 
-          <div className="text-center">
+            <div className="text-center">
             <Link to="/create">
-              <button className="post-btn post-create-btn">
+                <button className="post-btn post-create-btn">
                 Create New Post
-              </button>
+                </button>
             </Link>
-          </div>
+            </div>
         </div>
-      );        
+        );
     }
 }
 
