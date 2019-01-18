@@ -14,6 +14,7 @@ const samplePosts = [
   	username:"Jada",
     replies: [
       {
+        id: 1,
         body: "Israel is my fave!",
         username: "Suellen"
       }
@@ -27,10 +28,12 @@ const samplePosts = [
     username:"Dinah C",
     replies: [
       {
+        id: 1,
         body: "Personal Answer 1",
         username: "Lane123"
       },
       {
+        id: 2,
         body: "Personal Answer 2",
         username: "Vitra"
       }

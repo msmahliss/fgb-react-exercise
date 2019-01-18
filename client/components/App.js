@@ -3,14 +3,14 @@ import ReactDOM from "react-dom";
 import { BrowserRouter, Route, Link } from 'react-router-dom';
 import { createStore } from "redux";
 
-import Home from "./Home.js";
-import CreatePost from "./CreatePost.js";
-import ViewPost from "./ViewPost.js";
+import Home from "./Home/Home.js";
+import CreatePost from "./Create/CreatePost.js";
+import ViewPost from "./View/ViewPost.js";
 import { samplePosts } from "../data/data.js";
 
 function postReducer(state, action) {
   const defaultState = {
-      posts: samplePosts
+      posts: []
   };
 
   state = state || defaultState;
@@ -19,10 +19,11 @@ function postReducer(state, action) {
     case "ADD_POST":
       return {
         posts: [...state.posts, action.post]
-      }
+      };
     case "EDIT_POST":
       return {
-        posts: state.posts.map(post => (post.id == action.id) ?  action.post : post )};
+        posts: state.posts.map(post => (post.id == action.id) ?  action.post : post )
+      };
     default:
       return state;
   }
@@ -43,14 +44,11 @@ ReactDOM.render(
         <li>
           <Link to="/create">Create Post</Link>
         </li>
-        <li>
-          <Link to="/post/1">View Post</Link>
-        </li>
       </ul>
 
       <Route path="/" exact render={() => <Home store={store}></Home>}/>
       <Route path="/create" render={({history}) => <CreatePost store={store} history={history}></CreatePost>}/>
-      <Route path="/post/:id" render={({match, history}) => <ViewPost data={samplePosts} store={store} match={match} history={history}></ViewPost>}/>
+      <Route path="/post/:id" render={({match, history}) => <ViewPost store={store} match={match} history={history}></ViewPost>}/>
     </div>
   </BrowserRouter>
   ,
