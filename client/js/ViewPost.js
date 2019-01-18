@@ -1,12 +1,15 @@
 import React, { Component } from "react";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
+import "../css/index.css";
 
 class PostReplyDetail extends React.Component {
 	render() {
 		const reply = this.props.reply;
+			
 
 		return(
 			<div>
+				{this.props.index != 0 && <hr className="line-dotted" />}
 				<p className="text-bold">{reply.username}:</p>
 				<p>{reply.body}</p>
 			</div>
@@ -20,8 +23,10 @@ class PostReplyForm extends React.Component {
 
 		const store = this.props.store;
 		this.post = this.props.post;
+		const postReplyId = this.post.replies.length + 1;
 
 		this.newPostReply = {
+			id: postReplyId,
 			body: "",
 			username: "AnonUser",
 		};
@@ -52,32 +57,36 @@ class PostReplyForm extends React.Component {
 	render() {
 		return(
 			<form onSubmit={this.handleFormSubmit}>
-		        <div className="form-group">
-		        	<label>Reply Message:</label>
+				<div className="col-md-9">
+			        <div className="form-group">
+			        	<label>Reply Message*:</label>
 
-					<textarea
-						className="form-control"
-						name="body"
-						onChange={this.handleFormElementChange}
-						required
-					></textarea>
+						<textarea
+							className="form-control"
+							name="body"
+							onChange={this.handleFormElementChange}
+							required
+						></textarea>
+			        </div>
+
+			        <div className="form-group">
+			        	<label>Reply User:</label>
+
+						<input
+							className="form-control"
+							type="text"
+							name="username"
+							placeholder="AnonUser"
+							onChange={this.handleFormElementChange}
+						></input>
+			        </div>
 		        </div>
 
-		        <div className="form-group">
-		        	<label>Reply User:</label>
-
-					<input
-						className="form-control"
-						type="text"
-						name="username"
-						placeholder="Serenely"
-						onChange={this.handleFormElementChange}
-					></input>
-		        </div>
-
-				<button>
-					Post Reply
-				</button>
+		        <div className="col-md-3">
+					<button type="submit" className="full-width">
+						Post Reply
+					</button>
+				</div>
 			</form>	
 		);
 	}
@@ -91,22 +100,27 @@ class PostDetail extends React.Component {
 
 		const replies = post.replies.map((reply, index) =>
 			<PostReplyDetail
-				key={index}
+				key={reply.id}
+				index={index}
 				reply={reply}
 			></PostReplyDetail>
 		);
 
 		return (
 			<div className="row post-border">
-				<div>
-					<h3>{post.title}</h3>
+				<div className="col-md-12">
+					<h3 className="text-bold">{post.title}</h3>
 
 					<div className="row">
-						<p className="col-md-6">By: {post.username}</p>
-						<p className="col-md-6">On: {post.createdTimestamp}</p>
+						<p className="col-md-2 no-margin-bottom">By: {post.username}</p>
+						<p className="col-md-10">On: {post.createdTimestamp}</p>
 					</div>
 
 					<p>{post.body}</p>
+				</div>
+
+				<div className="col-md-12">
+					<hr className="line-dotted" />
 				</div>
 
 				<div className="col-md-12">
@@ -118,12 +132,24 @@ class PostDetail extends React.Component {
 				</div>
 
 				<div className="col-md-12">
+					<hr className="line-solid" />
+				</div>
+
+				<div className="col-md-12">
 					<PostReplyForm post={post} store={store} history={history}></PostReplyForm>
 				</div>
 
-				<button>
-					<Link to="/">Back to Posts</Link>
-				</button>
+				<div className="col-md-12">
+					<hr className="line-solid" />
+				</div>
+
+				<div className="col-md-12">
+					<Link to="/">
+						<button className="full-width link-unstyled">
+							Back to Posts
+						</button>
+					</Link>
+				</div>
 			</div>
 		);
 	}

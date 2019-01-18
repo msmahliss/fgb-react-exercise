@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from 'react-router-dom';
+import "../css/index.css";
 
 class PostItem extends React.Component {
   render() {
@@ -8,17 +9,24 @@ class PostItem extends React.Component {
     return (
       <div className="col-md-12 post-border">
         <Link to={"/post/" + post.id} className="link-unstyled">
-          <p className="">
-            <strong>{post.title}</strong> {post.body}
-          </p>
 
-          <div className="post-data">
-            <p>Posted By: {post.username}</p>
+        <div className="row">
+          <div className="col-md-10">
+              <p className="text-truncate">
+                <strong>{post.title}</strong> {post.body}
+              </p>
 
-            <p>{post.replies.length} Comment{ post.replies.length === 1 ? "" : "s" }</p>
+              <span className="post-item-username">Posted By: {post.username}</span>
 
-            <p>Last Update: {post.createdTimestamp}</p>
+              <span className="post-item-comments">{post.replies.length} Comment{ post.replies.length === 1 ? "" : "s" }</span>
+
+              <span className="post-item-date post-item-update align-right">Last Update: {post.createdTimestamp}</span>
           </div>
+
+          <div className="col-md-2">
+            <span className="triangle-right align-right"></span>
+          </div> 
+        </div>        
         </Link>
       </div>        
     );
@@ -47,9 +55,13 @@ class Home extends React.Component {
             {postItems.length > 0 ? postItems : "There are currently no posts."}
           </div>
 
-          <button>
-            <Link to="/create">Create New Post</Link>
-          </button>
+          <div className="text-center">
+            <Link to="/create">
+              <button className="post-btn post-create-btn">
+                Create New Post
+              </button>
+            </Link>
+          </div>
         </div>
       );        
     }

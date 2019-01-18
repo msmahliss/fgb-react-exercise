@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import { Link } from 'react-router-dom';
+import "../css/index.css";
 
 class CreatePostForm extends React.Component {
 	constructor(props) {
 		super(props);
 
 		const store = this.props.store;
-		const postId = store.getState().posts.length + 1;
+		const postId = store.getState().posts.length + 1; //not robust; works only because posts list will only grow
 
 		this.newPost = {
 			id: postId,
@@ -39,46 +40,50 @@ class CreatePostForm extends React.Component {
 	
 	render() {
 		return (
-			<form onSubmit={this.handleFormSubmit} className="text-center">
-		        <div className="form-group" >
-		            <label className="text-bold">Title
-			            <input className="form-control"
+				<form onSubmit={this.handleFormSubmit} id="create-post-form">
+			        <div className="form-group form-group-create-post col-md-12">
+			            <label className="text-bold">Title*</label>
+
+			            <input
+			            	className="form-control"
 			                type="text"
 			                name="title"
 			                onChange={this.handleFormElementChange}
 			                required
-			            />
-		             </label>
-		        </div>
+			            ></input>		             
+			        </div>
 
-		        <div className="form-group">
-					<label className="text-bold">Message
+			        <div className="form-group form-group-create-post col-md-12">
+						<label className="text-bold">Message*</label>
 						<textarea
 							className="form-control"
 							name="body"
 							onChange={this.handleFormElementChange}
 							required
 						></textarea>
-					</label>
-		        </div>
+			        </div>
 
-		        <div className="form-group">
-					<label className="text-bold">User
+			        <div className="form-group form-group-create-post col-md-12">
+						<label className="text-bold">User</label>
+
 						<input
 							className="form-control"
 							type="text"
 							name="username"
 							onChange={this.handleFormElementChange}
-						/>
-					</label>
-		        </div>
+						></input>
+			        </div>
 
-		        <button>
-		        	<Link to="/">Cancel</Link>
-		        </button>
+			        <div className="form-group form-group-create-post col-md-12">
+				        <Link to="/" className="link-unstyled">
+					        <button type="button" className="post-btn">
+					        	Cancel
+					        </button>
+					    </Link>
 
-				<input type="submit" value="Create Post" />
-			</form>
+				        <button type="submit" className="post-btn">Create Post</button>
+					</div>
+				</form>
 		);
 	}
 }
@@ -89,8 +94,8 @@ class CreatePost extends React.Component {
 		let history = this.props.history;
 
 		return (
-			<div className="post-border text-center">
-				<h2>Create a new post</h2>
+			<div className="post-border">
+				<h2 className="text-center">Create a new post</h2>
 
 				<CreatePostForm
 					store={store} history={history}
